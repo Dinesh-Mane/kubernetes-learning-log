@@ -1,6 +1,4 @@
 ![](../images/01.png)
-
-
 ## 🧠 **CONTROL PLANE COMPONENTS**
 
 ### **1️⃣ etcd**
