@@ -189,9 +189,7 @@
 
 ---
 
-# (B) Relationship between `volumes` and `volumeMounts` — deep practical dive
-
-(From the viewpoint of a senior Kubernetes admin / developer / DevSecOps — practical, hands-on, with real production gotchas.)
+# (B) Relationship between `volumes` and `volumeMounts`
 
 You already gave the right short summary — **declaring a volume != mounting it into a container**. Now let’s expand every implication, show real examples, list common mistakes, debugging commands, security notes, and interview-ready Qs.
 
@@ -244,13 +242,13 @@ Important: `volumes` defines `app-data`. Both `initContainer` and `containers[].
 
 ## 3) Common beginner mistakes (and why they fail)
 
-1. **Defined volume but forgot to add `volumeMounts` in container**
-   Result: container does not see the volume. Pod runs, app uses ephemeral FS and data not persistent.
+1. **Defined volume but forgot to add `volumeMounts` in container**  
+   * Result: container does not see the volume. Pod runs, app uses ephemeral FS and data not persistent.
 
-2. **Name mismatch between `volumes.name` and `volumeMounts.name`**
-   Result: mount error like `volume "foo" not found`, or Pod stuck in `ContainerCreating`.
+2. **Name mismatch between `volumes.name` and `volumeMounts.name`**  
+   * Result: mount error like `volume "foo" not found`, or Pod stuck in `ContainerCreating`.
 
-3. **Using `subPath` incorrectly**
+3. **Using `subPath` incorrectly**  
 
    * `subPath` mounts a single file/directory from the volume. Ownership/perm changes may not propagate; `subPath` is not updated atomically in older k8s versions (beware race conditions).
    * If you expect the whole volume but use `subPath`, you’ll only see that subtree.
@@ -397,13 +395,6 @@ kubectl describe pvc app-data -n prod
 
 ---
 
-## 12) Mnemonic to remember the relationship (your new quick mental model)
-
-**V → M = Volume declares (V), Mount uses it (M)**
-Think: *V*olume = *V*ault (store), *M*ount = *M*ap (where it appears inside container).
-Mnemonic phrase (Marathi-English mixed for memory): **"Vault तयार करा, Map लावा"** — first declare the vault, then map it into the container.
-
----
 
 # (C) Volume lifetime — deep production view (senior k8s admin / developer / DevSecOps)
 

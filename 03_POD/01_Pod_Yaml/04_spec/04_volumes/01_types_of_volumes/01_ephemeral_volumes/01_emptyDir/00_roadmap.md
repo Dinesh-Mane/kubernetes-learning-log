@@ -10,7 +10,7 @@ If you skip these, everything else in Kubernetes storage will feel confusing.
 A **volume is just a folder that Kubernetes attaches to your Pod**, and your container(s) can read/write files inside that folder.
 
 Think of it like:
-Your container = a small temporary machine
+Your container = a small temporary machine  
 Volume = an extra folder that comes from outside the container
 
 ### 2. Why do we need volumes?
@@ -19,7 +19,7 @@ Containers **delete everything** inside their filesystem when they restart.
 Example:
 
 * Your container writes logs to `/var/log/app.log`
-* Container restarts → file is gone
+* Container restarts → file is gone  
   Because container’s root filesystem is **ephemeral**.
 
 To avoid this loss, Kubernetes allows attaching a **volume**, which survives container restarts (but not always Pod restart depending on type).
@@ -38,15 +38,15 @@ So each volume type has its own **lifecycle**, based on what storage backend it 
 
 ### 4. Important Truth
 
-A *Kubernetes Volume = a directory mounted into a Pod*
+A *Kubernetes Volume = a directory mounted into a Pod*  
 A *Container’s filesystem = gets wiped on restart*
 
 ---
 
 # (B) Relationship between volumes and volumeMounts
 
-A mistake beginners make:
-They think that defining `volumes:` is enough. No.
+A mistake beginners make:  
+They think that defining `volumes:` is enough. No.  
 
 Kubernetes storage needs **two parts**:
 
@@ -66,7 +66,7 @@ volumes:
     emptyDir: {}
 ```
 
-This only **defines the storage**.
+This only **defines the storage**.  
 It does NOT put anything inside the container yet.
 
 ### 2. `spec.containers.volumeMounts`
@@ -169,9 +169,9 @@ Now let’s get into the first real volume type.
 
 # What is emptyDir?
 
-`emptyDir` is a **temporary directory** created on the node when the Pod starts.
-It is **empty** at the beginning (hence the name).
-It exists as long as the **Pod exists**.
+`emptyDir` is a **temporary directory** created on the node when the Pod starts.  
+It is **empty** at the beginning (hence the name).  
+It exists as long as the **Pod exists**.  
 
 ### The simplest mental model:
 
@@ -194,7 +194,7 @@ It exists as long as the **Pod exists**.
 
 # How emptyDir works internally (detailed)
 
-1. You define an emptyDir volume.
+1. You define an emptyDir volume.  
 2. Kubelet creates a directory on the node:
 
    * For normal mode → on node disk
@@ -215,7 +215,7 @@ There are two types of emptyDir:
 emptyDir: {}
 ```
 
-This uses the node’s hard disk (or SSD).
+This uses the node’s hard disk (or SSD).  
 
 Good for:
 
@@ -309,9 +309,9 @@ spec:
 
 ### Use case:
 
-initContainer writes config → main container reads it
-or
-sidecar container processes logs written by app
+initContainer writes config → main container reads it  
+or  
+sidecar container processes logs written by app  
 
 ---
 
@@ -346,9 +346,9 @@ This creates an in-memory filesystem like `tmpfs`.
 
 ## 1. Using emptyDir for persistent data
 
-Example: storing DB data
-When Pod dies → all data lost
-This is a major production mistake.
+Example: storing DB data  
+When Pod dies → all data lost  
+This is a major production mistake.  
 
 ## 2. Using medium: Memory without planning RAM usage
 
