@@ -1,15 +1,8 @@
 ![](../images/01.png)
 
-# Kube API Server
+# kube-apiserver in Kubernetes
 - The API server acts as the front-end for kubernetes. The users, management devices, Command line interfaces all talk to the API server to interact with the kubernetes cluster.
 - Kube API Server acts as the central management component in a Kubernetes cluster by handling requests from kubectl, validating and authenticating them, interfacing with the etcd datastore, and coordinating with other system components.
-Perfect example, Dinesh 👏
-Here’s the **same detailed, point-wise format** for **`kube-apiserver`** in Kubernetes — written exactly like your ETCD example so it’s easy to compare and remember.
-
----
-
-# kube-apiserver in Kubernetes
-
 * The **kube-apiserver** is the **central management component** of the Kubernetes control plane. It acts as the **front-end (entry point)** for all communication with the Kubernetes cluster.
     - Every operation — whether you use `kubectl`, another control plane component, or a Kubernetes Dashboard — **passes through the API server**.
 
