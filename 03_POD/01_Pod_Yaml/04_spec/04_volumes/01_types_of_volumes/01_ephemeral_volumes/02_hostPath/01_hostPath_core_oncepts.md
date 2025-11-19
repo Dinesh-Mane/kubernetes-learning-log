@@ -1,9 +1,6 @@
 # Part 1: Core Concepts You Must Master About hostPath
-## Explained by a Senior Kubernetes Professional
 
 Let me break down these 19 core concepts with the depth that comes from years of debugging production incidents, securing clusters, and architecting resilient systems.
-
----
 
 ## 1. What is hostPath in Kubernetes
 

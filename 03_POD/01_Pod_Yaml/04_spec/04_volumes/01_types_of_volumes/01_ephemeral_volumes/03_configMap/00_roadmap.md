@@ -91,8 +91,6 @@ Also know:
 
 ---
 
----
-
 # ✅ **2. Concepts You MUST Master (DETAILED)**
 
 ### **2.1 How ConfigMap Volume Files Are Created**
@@ -173,7 +171,6 @@ You must know how ConfigMap can be combined with:
 
 ---
 
----
 
 # ✅ **3. Interview Questions You MUST Be Able to Answer**
 
@@ -219,8 +216,6 @@ You must know how ConfigMap can be combined with:
 * Your pod is not reading updated config. What steps will you take?
 * Node is under heavy load due to frequent config changes. Why?
 * Your app crashes because ConfigMap mounted file disappears. What’s happening?
-
----
 
 ---
 
